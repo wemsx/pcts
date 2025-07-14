@@ -1,0 +1,9 @@
+:root {
+  --text-color: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #F7F7F7; /* 深色模式字体颜色 */
+  }
+}
