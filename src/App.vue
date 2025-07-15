@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import PctsItem from './components/PctsItem.vue'
+import { pctsStore } from "@/stores/pctsStore";
+const store = pctsStore();
 </script>
 
 <template>
@@ -10,14 +12,9 @@ import PctsItem from './components/PctsItem.vue'
 
     <div id="timeline" class="app_arch">
         <div class="content">
-        <PctsItem>
-            haoye
-        </PctsItem>
-        <PctsItem>
-            buhao
-        </PctsItem>
-        <PctsItem>
-            wandan
+        <PctsItem v-for="(item, index) in store.pcts">
+            <h2>{{ item.title }}</h2>
+            {{ item.sum / item.total }}
         </PctsItem>
         </div>
     </div>
@@ -101,5 +98,18 @@ html {
   #app {
     display: flex;
   }
+}
+
+.content .pcts {
+  cursor: pointer;
+  transition: 400ms;
+}
+.content .pcts:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.content:has(.pcts:hover) > .pcts:not(:hover) {
+  filter: blur(10px);
+  transform: scale(0.9, 0.9);
 }
 </style>

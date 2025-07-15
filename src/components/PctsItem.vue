@@ -1,5 +1,5 @@
 <template>
-    <div class="pcts">
+    <div class="pcts" :style="{backgroundColor : 'grey'}">
         <slot></slot>
     </div>
 </template>
@@ -10,8 +10,9 @@
 .pcts {
     width: 40vw;
     height: 16vh;
-    border: 2px solid red;
     border-radius: 10px;
+    color: var(--text-color);
+    padding: 1vh 1vw
 }
 
 @media (max-width: 1024px) {
