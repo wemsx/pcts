@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import PctsArea from './components/PctsArea.vue'
-
+import SettingsArea from './components/SettingsArea.vue';
 import { pctsStore } from "@/stores/pctsStore";
-const store = pctsStore();
+const pctsStoreRef = pctsStore();
+import { settingStore } from "@/stores/settingStore";
+const settingStoreRef = settingStore();
 </script>
 
 <template>
 
     <div id="desc" class="app_arch">
-        <h2 class="title"> Project Pcts </h2>
+        <div class="controling">
+            <div class="title"> {{ settingStoreRef.settings.ProjectTitle }} </div>
+            <SettingsArea class="settings"></SettingsArea>
+        </div>
     </div>
 
-    <PctsArea :items="store.pcts" />
+    <PctsArea :items="pctsStoreRef.pcts" />
 </template>
 
 <style scoped>
@@ -20,18 +25,26 @@ const store = pctsStore();
     height: 100vh;
 }
 
-#desc h2 {
+.controling {
     position: absolute;
     top: 50%;
-    /* 定位到父容器50%位置 */
     left: 50%;
     transform: translate(-50%, -50%);
-    /* 反向偏移自身宽高的50% */
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    /* 关键：改为垂直排列 */
+    justify-content: center;
+    /* 垂直居中 */
+    align-items: center;
+    /* 水平居中 */
+    gap: 2vh;
+    /* 垂直间距 */
 }
 
 .title {
     text-align: left;
+    font-weight: bold;
+    font-size: 4rem;
     color: var(--text-color);
 }
 </style>
@@ -43,13 +56,9 @@ const store = pctsStore();
 }
 
 body,
-html {
-    height: 100%;
-    width: 100%;
-}
-
+html,
 #app {
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
