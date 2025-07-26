@@ -1,0 +1,9 @@
+:root {
+    --collapse-width: 30vw;
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --collapse-width: 80vw;
+      }
+}

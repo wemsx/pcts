@@ -12,34 +12,35 @@
 
         <buttonPlus @click="() => openModal('pcts')">设定百分比</buttonPlus>
         <Teleport to="#app">
-            <Modal :isOpen="modalIsOpen.pcts" @close="() => closeModal('pcts')">
+            <Modal :isOpen="modalIsOpen.pcts" @close="() => { closeModal('pcts'), pctsIsOpen.fill(false) }">
                 <h2>设定百分比</h2>
-                <div v-for="item in pctsStoreRef.pcts">
-                    <div class="pctsForm">
-
-                    </div>
+                <div v-for="(item, index) of pctsStoreRef.pcts">
+                    <collapsePlus v-model="pctsIsOpen[index]" :title="item.title" width="var(--collapse-width)">
+                        <div>{{ item }}</div>
+                    </collapsePlus>
                 </div>
             </Modal>
         </Teleport>
     </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import Modal from './Modal.vue';
 import buttonPlus from './kits/buttonPlus.vue';
+import collapsePlus from './kits/collapsePlus.vue'
 import { settingStore } from "@/stores/settingStore";
 const settingStoreRef = settingStore();
 import { pctsStore } from "@/stores/pctsStore";
 const pctsStoreRef = pctsStore();
 
 const modalIsOpen = ref({ setting: false, pcts: false });
-
 const openModal = (key) => {
     modalIsOpen.value[key] = true;
 };
-
 const closeModal = (key) => {
     modalIsOpen.value[key] = false;
 };
+
+const pctsIsOpen = ref(Array(pctsStoreRef.pcts.length).fill(false));
 </script>
 <style scoped></style>

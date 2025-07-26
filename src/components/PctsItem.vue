@@ -1,5 +1,5 @@
 <template>
-  <div class="pcts">
+  <div class="pcts" :style="{'background-color': color}">
     <h2>{{ title }}</h2>
     <percentage :percentage="percentage"></percentage>
   </div>
@@ -8,7 +8,8 @@
 <script setup>
 defineProps({
   title: String,
-  percentage: Number
+  percentage: Number,
+  color: String
 })
 import Percentage from './Percentage.vue'
 </script>

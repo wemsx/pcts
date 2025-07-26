@@ -2,7 +2,7 @@
     <div id="timeline" class="app_arch">
         <div class="content">
             <PctsItem v-for="(item, index) in items" :key="index" :title="item.title"
-                :percentage="item.sum / item.total" />
+                :percentage="item.sum / item.total" :color="item.color" />
         </div>
     </div>
 </template>

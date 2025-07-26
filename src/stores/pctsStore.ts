@@ -27,6 +27,14 @@ export const pctsStore = defineStore("pcts", {
           sum: 0,
           color: "grey",
         },
+        {
+          title: "buy amd",
+          startDate: 1752586979,
+          endDate: 1784122974,
+          total: 50000,
+          sum: 0,
+          color: "green",
+        },
       ],
     };
   },
